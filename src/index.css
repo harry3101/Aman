@@ -1,0 +1,191 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Quicksand:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 340 100% 98%;
+    --foreground: 340 30% 20%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 340 30% 20%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 340 30% 20%;
+
+    --primary: 340 82% 65%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 340 40% 95%;
+    --secondary-foreground: 340 30% 30%;
+
+    --muted: 340 20% 94%;
+    --muted-foreground: 340 10% 50%;
+
+    --accent: 340 60% 80%;
+    --accent-foreground: 340 30% 20%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 340 30% 90%;
+    --input: 340 30% 90%;
+    --ring: 340 82% 65%;
+
+    --radius: 1rem;
+
+    --rose-soft: 340 100% 96%;
+    --rose-light: 340 80% 90%;
+    --rose-medium: 340 82% 75%;
+    --rose-deep: 340 82% 55%;
+    --heart-red: 0 80% 55%;
+    --gold-warm: 35 90% 60%;
+
+    --font-display: 'Dancing Script', cursive;
+    --font-body: 'Quicksand', sans-serif;
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-body);
+  }
+  h1, h2, h3 {
+    font-family: var(--font-display);
+  }
+}
+
+@layer components {
+  .btn-yes {
+    @apply px-10 py-4 rounded-full text-xl font-semibold transition-all duration-300 cursor-pointer;
+    background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--rose-deep)));
+    color: hsl(var(--primary-foreground));
+    box-shadow: 0 4px 20px hsl(var(--primary) / 0.4);
+  }
+  .btn-yes:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 30px hsl(var(--primary) / 0.6);
+  }
+  .btn-no {
+    @apply px-10 py-4 rounded-full text-xl font-semibold transition-all duration-200 cursor-pointer;
+    background: hsl(var(--muted));
+    color: hsl(var(--muted-foreground));
+    border: 2px solid hsl(var(--border));
+  }
+  .timeline-node {
+    @apply w-5 h-5 rounded-full border-4 z-10;
+    background: hsl(var(--primary));
+    border-color: hsl(var(--rose-light));
+    box-shadow: 0 0 15px hsl(var(--primary) / 0.5);
+  }
+  .timeline-line {
+    background: linear-gradient(180deg, hsl(var(--rose-light)), hsl(var(--primary)), hsl(var(--rose-medium)), hsl(var(--heart-red)), hsl(var(--primary)));
+  }
+  .photo-card {
+    @apply rounded-2xl overflow-hidden shadow-lg transition-all duration-500;
+    border: 3px solid hsl(var(--rose-light));
+    box-shadow: 0 8px 30px hsl(var(--primary) / 0.15);
+  }
+  .photo-card:hover {
+    transform: scale(1.03) rotate(1deg);
+    box-shadow: 0 12px 40px hsl(var(--primary) / 0.25);
+  }
+
+  /* Polaroid frame styles */
+  .polaroid-frame {
+    @apply transition-all duration-500 cursor-pointer;
+    width: 220px;
+    flex-shrink: 0;
+  }
+  @media (min-width: 768px) {
+    .polaroid-frame {
+      width: 260px;
+    }
+  }
+  .polaroid-inner {
+    background: hsl(var(--card));
+    padding: 12px 12px 0 12px;
+    border-radius: 4px;
+    box-shadow:
+      0 4px 6px hsl(var(--foreground) / 0.08),
+      0 12px 30px hsl(var(--foreground) / 0.12),
+      inset 0 0 0 1px hsl(var(--border));
+  }
+  .polaroid-frame:hover {
+    transform: rotate(0deg) scale(1.08) !important;
+    z-index: 10;
+  }
+  .polaroid-frame:hover .polaroid-inner {
+    box-shadow:
+      0 8px 16px hsl(var(--primary) / 0.15),
+      0 20px 50px hsl(var(--primary) / 0.2),
+      inset 0 0 0 1px hsl(var(--rose-light));
+  }
+  .polaroid-image-wrapper {
+    @apply overflow-hidden;
+    aspect-ratio: 1 / 1;
+    background: hsl(var(--muted));
+  }
+  .polaroid-image {
+    @apply w-full h-full object-cover transition-transform duration-500;
+  }
+  .polaroid-frame:hover .polaroid-image {
+    transform: scale(1.05);
+  }
+  .polaroid-caption {
+    @apply text-center;
+    padding: 14px 4px 16px;
+  }
+  .snowflake {
+    position: fixed;
+    color: hsl(var(--rose-light));
+    pointer-events: none;
+    z-index: 50;
+    animation: snowfall linear forwards;
+    opacity: 0.7;
+  }
+  .hero-glow {
+    background: radial-gradient(ellipse at center, hsl(var(--rose-soft)) 0%, hsl(var(--background)) 70%);
+  }
+}
+
+@keyframes snowfall {
+  0% {
+    transform: translateY(-10vh) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(105vh) rotate(720deg);
+    opacity: 0.2;
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-20px) rotate(5deg); }
+}
+
+@keyframes pulse-heart {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+}
+
+@keyframes ribbon-wave {
+  0%, 100% { transform: scaleX(1); }
+  50% { transform: scaleX(1.02); }
+}
