@@ -7,7 +7,7 @@ const HeroSection = () => {
         <img src={teddyImg} alt="Cute teddy bear" className="w-48 h-48 md:w-64 md:h-64 drop-shadow-2xl" />
       </div>
       <h1 className="text-5xl md:text-7xl lg:text-8xl font-display text-primary mb-6 text-center leading-tight">
-        Hey Beautiful ✨
+        Hey Doraemon ✨
       </h1>
       <p className="text-lg md:text-2xl text-muted-foreground font-body max-w-lg text-center mb-8">
         I made this little something just for you... scroll down 💕
