@@ -12,14 +12,14 @@ import couple9 from "@/assets/couple-9.jpg";
 const sections = [
   {
     type: "text" as const,
-    content: "Every love story is beautiful, but ours is my favorite... 💕",
+    content: "Every  story is beautiful, but ours is my favorite... 💕",
   },
   {
     type: "photos" as const,
     photos: [
       { src: couple1, caption: "Your smile lights up my world 🌸", rotate: "-6deg" },
       { src: couple2, caption: "Grace in every step 💃", rotate: "4deg" },
-      { src: couple3, caption: "Adventures with you 🌍", rotate: "-3deg" },
+      { src: couple3, caption: "🌍💖", rotate: "-3deg" },
     ],
   },
   {
